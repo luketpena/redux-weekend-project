@@ -11,6 +11,7 @@ class Inputs extends Component {
         <p>Understanding: {this.props.feedback.understanding}</p>
         <p>Support: {this.props.feedback.support}</p>
         <p>Comments: {this.props.feedback.comment}</p>
+        <button onClick={()=>this.props.changeStep(1)}>Submit</button>
       </div>
     )
   }

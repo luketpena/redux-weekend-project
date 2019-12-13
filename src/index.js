@@ -20,6 +20,12 @@ const feedbackReducer = (state = {
     case 'IN_UNDERSTANDING': return {...state, understanding: action.payload};
     case 'IN_SUPPORT': return {...state, support: action.payload};
     case 'IN_COMMENT': return {...state, comment: action.payload};
+    case 'RESET_FORM': return {
+      feeling: '',
+      understanding: '',
+      support: '',
+      comment: ''
+    };
     default: return state;
   }
 };

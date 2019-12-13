@@ -19,7 +19,7 @@ class Inputs extends Component {
       type: this.props.data.dispatchType,
       payload: this.state.value
     });
-    this.props.incrementStep();
+    this.props.changeStep(1);
     this.setState({
       value: ''
     })
@@ -29,6 +29,7 @@ class Inputs extends Component {
     return (
       <form onSubmit={this.handleClickNext}>
         <h2>{this.props.data.question}</h2>
+        {/* reset value to this.state.value */}
         <input required value={this.state.value} onChange={this.handleChange} type={this.props.data.type} placeholder={this.props.data.placeholder}/>
         <button>Next</button>
       </form>

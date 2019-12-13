@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Inputs from '../Inputs/Inputs';
 import Summary from '../Summary/Summary';
+import ThankYou from '../ThankYou/ThankYou';
 import {connect} from 'react-redux';
 
 class App extends Component {
@@ -17,18 +18,29 @@ class App extends Component {
     {question: "Any comments you want to leave?", placeholder: "Comments?", type: "text", dispatchType: 'IN_COMMENT'}
   ]
 
-  incrementStep = ()=> {
+  changeStep = (val)=> {
     this.setState({
-      step: this.state.step+1
+      step: this.state.step+val
     })
   }
 
   renderSections = ()=> {
-    if (this.state.step<this.text.length) {
-      return <Inputs data={this.text[this.state.step]} incrementStep={this.incrementStep}/>
+    let numberOfInputs = this.text.length;
+    if (this.state.step<numberOfInputs) {
+      return <Inputs data={this.text[this.state.step]} changeStep={this.changeStep}/>;
     } else {
-      return <Summary />
+      switch(this.state.step) {
+        case numberOfInputs+0: return <Summary changeStep={this.changeStep}/>;
+        case numberOfInputs+1: return <ThankYou resetFeedbackForm={this.resetFeedbackForm}/>;
+      }
     }
+  }
+
+  resetFeedbackForm = ()=> {
+    this.setState({step: 0});
+    this.props.dispatch({
+      type: 'RESET_FORM'
+    })
   }
 
   render() {
