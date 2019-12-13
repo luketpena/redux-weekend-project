@@ -13,21 +13,25 @@ class Inputs extends Component {
     });
   }
 
-  handleClickNext = ()=> {
+  handleClickNext = (event)=> {
+    event.preventDefault();
     this.props.dispatch({
       type: this.props.data.dispatchType,
       payload: this.state.value
     });
     this.props.incrementStep();
+    this.setState({
+      value: ''
+    })
   }
 
   render () {
     return (
-      <div>
+      <form onSubmit={this.handleClickNext}>
         <h2>{this.props.data.question}</h2>
-        <input value={this.state.value} onChange={this.handleChange} type={this.props.data.type} placeholder={this.props.data.placeholder}/>
-        <button onClick={this.handleClickNext}>Next</button>
-      </div>
+        <input required value={this.state.value} onChange={this.handleChange} type={this.props.data.type} placeholder={this.props.data.placeholder}/>
+        <button>Next</button>
+      </form>
     )
   }
 }

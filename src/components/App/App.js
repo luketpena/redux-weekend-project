@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Inputs from '../Inputs/Inputs';
 import Summary from '../Summary/Summary';
+import {connect} from 'react-redux';
 
 class App extends Component {
 
@@ -36,6 +37,7 @@ class App extends Component {
         <header className="App-header">
           <h1 className="App-title">Feedback!</h1>
           <h4><i>Don't forget it!</i></h4>
+          <p>Reducer: {JSON.stringify(this.props.feedback)}</p>
         </header>
         <br/>
 
@@ -45,4 +47,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default connect(reduxState=>({feedback: reduxState.feedbackReducer}))(App);
