@@ -12,13 +12,14 @@ class App extends Component {
   }
 
   text = [
-    {question: "How are you feeling today?", placeholder: "Feeling?", type: "text", dispatchType: 'IN_FEELING'},
-    {question: "How well are you understanding the content?", placeholder: "Understanding?", type: "number", dispatchType: 'IN_UNDERSTANDING'},
-    {question: "How well are you being supported?", placeholder: "Support?", type: "number", dispatchType: 'IN_SUPPORT'},
-    {question: "Any comments you want to leave?", placeholder: "Comments?", type: "text", dispatchType: 'IN_COMMENT'}
+    {question: "How are you feeling today?", placeholder: "Feeling?", type: "number", dispatchType: 'IN_FEELING', startVal: this.props.feedback.feeling},
+    {question: "How well are you understanding the content?", placeholder: "Understanding?", type: "number", dispatchType: 'IN_UNDERSTANDING', startVal: this.props.feedback.understanding},
+    {question: "How well are you being supported?", placeholder: "Support?", type: "number", dispatchType: 'IN_SUPPORT', startVal: this.props.feedback.support},
+    {question: "Any comments you want to leave?", placeholder: "Comments?", type: "text", dispatchType: 'IN_COMMENT', startVal: this.props.feedback.comments}
   ]
 
   changeStep = (val)=> {
+    
     this.setState({
       step: this.state.step+val
     })
@@ -27,11 +28,21 @@ class App extends Component {
   renderSections = ()=> {
     let numberOfInputs = this.text.length;
     if (this.state.step<numberOfInputs) {
+
+      switch(this.state.step) {
+        case 0: this.text[0].startVal = this.props.feedback.feeling; break;
+        case 1: this.text[1].startVal = this.props.feedback.understanding; break;
+        case 2: this.text[2].startVal = this.props.feedback.support; break;
+        case 3: this.text[3].startVal = this.props.feedback.comments; break;
+        default: return false;
+      }
+      
       return <Inputs data={this.text[this.state.step]} changeStep={this.changeStep}/>;
     } else {
       switch(this.state.step) {
         case numberOfInputs+0: return <Summary changeStep={this.changeStep}/>;
         case numberOfInputs+1: return <ThankYou resetFeedbackForm={this.resetFeedbackForm}/>;
+        default: return <p>Whoopsie. You shouldn't be seeing this. My bad.</p>
       }
     }
   }

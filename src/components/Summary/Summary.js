@@ -1,11 +1,18 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import Axios from 'axios';
 
 class Inputs extends Component {
 
   submitFeedback = ()=> {
-    this.props.changeStep(1);
+
+    let newFeedback = {...this.props.feedback};  
     
+    Axios.post('/feedback', newFeedback).then(response=>{
+      this.props.changeStep(1);
+    }).catch(error=>{
+      console.log(error);      
+    })
   }
 
   render () {

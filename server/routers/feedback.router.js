@@ -13,7 +13,23 @@ router.get('/',(req,res)=>{
   }).catch(error=>{
     console.log(error);
   });
-})
+});
+
+// Posts a new feedback to the database
+router.post('/',(req,res)=>{
+  console.log(req.body);
+  const {feeling, understanding, support, comments} = req.body;
+
+  let queryString = 'INSERT INTO "feedback" ("feeling", "understanding", "support", "comments") VALUES ($1,$2,$3,$4);';
+
+  pool.query(queryString, [feeling, understanding, support, comments]).then(result=>{
+    res.sendStatus(200);
+  }).catch(error=>{
+    res.sendStatus(400);
+    console.log(error);    
+  });
+});
+
 
 
 // EXPORT THE ROUTES
