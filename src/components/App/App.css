@@ -17,3 +17,16 @@
   font-size: large;
 }
 
+.btn-back {
+  margin-top: 128px;
+}
+
+form {
+  display: flex;
+  justify-content: center;
+}
+
+.feedbackBox {
+  max-width: 800px;
+  margin: 0 auto;
+}

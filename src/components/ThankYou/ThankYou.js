@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import Fab from '@material-ui/core/Fab';
 
 class Inputs extends Component {
 
@@ -6,7 +7,7 @@ class Inputs extends Component {
     return (
       <div>
         <h2>Thank You!</h2>
-        <button onClick={this.props.resetFeedbackForm}>Leave New Feedback</button>
+        <Fab variant="extended" color="secondary" onClick={this.props.resetFeedbackForm}>Leave New Feedback</Fab>
       </div>
     )
   }

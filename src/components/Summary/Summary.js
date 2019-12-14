@@ -1,14 +1,14 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import Axios from 'axios';
+import Button from '@material-ui/core/Button';
 
 class Inputs extends Component {
 
   submitFeedback = ()=> {
-
-    let newFeedback = {...this.props.feedback};  
     
-    Axios.post('/feedback', newFeedback).then(response=>{
+    //Sends the information from the inputs that got stored in the reducer to be sent to the server/db for storage
+    Axios.post('/feedback', this.props.feedback).then(response=>{
       this.props.changeStep(1);
     }).catch(error=>{
       console.log(error);      
@@ -23,7 +23,7 @@ class Inputs extends Component {
         <p>Understanding: {this.props.feedback.understanding}</p>
         <p>Support: {this.props.feedback.support}</p>
         <p>Comments: {this.props.feedback.comments}</p>
-        <button onClick={this.submitFeedback}>Submit</button>
+        <Button variant="contained" color="primary" onClick={this.submitFeedback}>Submit</Button>
       </div>
     )
   }

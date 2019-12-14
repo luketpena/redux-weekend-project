@@ -30,6 +30,23 @@ router.post('/',(req,res)=>{
   });
 });
 
+// Posts the new flagged status
+router.put('/flag/:id',(req,res)=>{
+  let id = req.params.id;
+  let newVal = req.body.val.toString().toUpperCase();
+
+  console.log('ID:',id,'New Value:',newVal);
+  
+  let queryString = 'UPDATE "feedback" SET "flagged" = $1 WHERE "id" = $2;'
+  pool.query(queryString, [newVal, id]).then(result=>{
+   
+    res.sendStatus(200);
+  }).catch(error=>{
+    res.sendStatus(400);
+    console.log(error);
+  });
+})
+
 
 
 // EXPORT THE ROUTES
