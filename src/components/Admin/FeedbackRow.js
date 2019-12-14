@@ -4,13 +4,17 @@ import TableRow from '@material-ui/core/TableRow';
 import Radio from '@material-ui/core/Radio';
 import Button from '@material-ui/core/Button';
 
+import RemoveButton from './RemoveButton';
 
 class FeedbackRow extends Component {
 
+ 
   handleFlagged = ()=> {
-    console.log('FLAG');
-    
     this.props.putFlag(this.props.feedback.id, !this.props.feedback.flagged);
+  }
+
+  clickRemove = ()=> {
+    this.props.removeFeedback(this.props.feedback.id);
   }
 
   render () {
@@ -21,7 +25,7 @@ class FeedbackRow extends Component {
         <TableCell>{this.props.feedback.support}</TableCell>
         <TableCell>{this.props.feedback.comments}</TableCell>
         <TableCell><Radio checked={this.props.feedback.flagged} onClick={this.handleFlagged}/></TableCell>
-        <TableCell><Button variant="outlined" color="secondary">Remove</Button></TableCell>
+        <TableCell><RemoveButton clickRemove={this.clickRemove}/></TableCell>
       </TableRow>
     )
   }

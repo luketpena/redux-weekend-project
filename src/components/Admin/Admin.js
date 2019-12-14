@@ -7,6 +7,7 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 
+
 class Admin extends Component {
 
   state = {
@@ -43,6 +44,14 @@ class Admin extends Component {
     })
   }
 
+  removeFeedback = (id)=> {
+    Axios.delete('/feedback/'+id).then(response=>{
+      this.getFeedback();
+    }).catch(error=>{
+      console.log(error);      
+    })
+  }
+
   render() {
     return (
       <div className="feedbackBox">
@@ -58,7 +67,7 @@ class Admin extends Component {
             </TableRow>
           </TableHead>
           <TableBody>
-            {this.state.feedback.map(item=><FeedbackRow key={item.id} feedback={item} putFlag={this.putFlag}/>)}
+            {this.state.feedback.map(item=><FeedbackRow key={item.id} feedback={item} putFlag={this.putFlag} removeFeedback={this.removeFeedback}/>)}
           </TableBody>
         </Table>
       </div>

@@ -35,16 +35,26 @@ router.put('/flag/:id',(req,res)=>{
   let id = req.params.id;
   let newVal = req.body.val.toString().toUpperCase();
 
-  console.log('ID:',id,'New Value:',newVal);
-  
   let queryString = 'UPDATE "feedback" SET "flagged" = $1 WHERE "id" = $2;'
   pool.query(queryString, [newVal, id]).then(result=>{
-   
     res.sendStatus(200);
   }).catch(error=>{
     res.sendStatus(400);
     console.log(error);
   });
+})
+
+// Removes a feedback from the database
+router.delete('/:id',(req,res)=>{
+  let id = req.params.id;
+
+  let queryString = 'DELETE FROM "feedback" WHERE "id" = $1';
+  pool.query(queryString, [id]).then(result=>{
+    res.sendStatus(200);
+  }).catch(error=>{
+    res.sendStatus(400);
+    console.log(error);
+  })
 })
 
 
