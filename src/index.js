@@ -13,7 +13,6 @@ const feedbackReducer = (state = {
     support: '',
     comments: ''
   }, action) => {
-  
     
   switch(action.type) {
     case 'IN_FEELING': return {...state, feeling: action.payload};

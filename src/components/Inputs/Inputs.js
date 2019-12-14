@@ -37,8 +37,6 @@ class Inputs extends Component {
   }
 
 
-
-
   render () {
 
     return (
