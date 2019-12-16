@@ -15,7 +15,6 @@ class RemoveButton extends Component {
     switch(this.state.step) {
       case 0:
         return <Button onClick={this.toggleStep} variant="outlined" color="secondary">Remove</Button>
-        break;
       case 1: //props.clickRemove
         return (
           <>
@@ -23,7 +22,7 @@ class RemoveButton extends Component {
             <Button onClick={this.toggleStep} variant="outlined" color="secondary">Cancel</Button>
           </>
         )
-        break;
+      default: return false;
     }
   }
 

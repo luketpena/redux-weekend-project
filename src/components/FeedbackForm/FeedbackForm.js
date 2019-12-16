@@ -48,7 +48,6 @@ class FeedbackForm extends Component {
         case numberOfInputs+0: return <Summary changeStep={this.changeStep}/>;
         case numberOfInputs+1: return <ThankYou resetFeedbackForm={this.resetFeedbackForm}/>;
         default: return <p>Whoopsie. You shouldn't be seeing this. My bad.</p>
-
       }
     }
   }
@@ -64,7 +63,6 @@ class FeedbackForm extends Component {
   render () {
     return (
       <div>
-        <p>Reducer: {JSON.stringify(this.props.feedback)}</p>
         {this.renderSections()}
       </div>
     )

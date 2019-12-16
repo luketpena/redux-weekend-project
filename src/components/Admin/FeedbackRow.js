@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
 import Radio from '@material-ui/core/Radio';
-import Button from '@material-ui/core/Button';
 
 import RemoveButton from './RemoveButton';
 
